@@ -1,0 +1,10 @@
+[package]
+name = "gx-world"
+description = "Validated, offline-prepared world assets for Global Express"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+gx-geo = { path = "../gx-geo" }

@@ -1,0 +1,15 @@
+[package]
+name = "gx-sim"
+description = "Fixed-rate simulation core and lock-free snapshot handoff"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[features]
+default = []
+jsbsim = ["dep:gx-fdm"]
+
+[dependencies]
+gx-geo = { path = "../gx-geo" }
+gx-fdm = { path = "../gx-fdm", optional = true }

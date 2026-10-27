@@ -1,0 +1,15 @@
+*.sh text eol=lf
+*.cpp text eol=lf
+*.h text eol=lf
+# M0-003: evidence is byte-exact; the generated sheet is diffed against analyzer output (LF).
+docs/hardware/evidence/** -text
+docs/hardware/m0-003-budget.md text eol=lf
+# M1-001 (Flight Dynamics): scripts are hashed into evidence rows; keep bytes identical on every checkout.
+tests/m1/** text eol=lf
+*.rs text eol=lf
+*.toml text eol=lf
+*.py text eol=lf
+docs/fdm/evidence/** -text
+docs/fdm/m1-001-jsbsim-sheet.md text eol=lf
+# M0-001C fixtures are byte-exact copies of board evidence
+tests/m0_001c/fixtures/** -text

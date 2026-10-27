@@ -1,0 +1,11 @@
+[package]
+name = "gx-render"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+gx-sim = { path = "../gx-sim" }
+gx-world = { path = "../gx-world" }
+libc = "0.2"

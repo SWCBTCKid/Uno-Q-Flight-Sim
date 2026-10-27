@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- M1-001: global5000 parked on the runway threshold, heading 090, engines
+     running at idle. Same position as JSBSim's c172p/reset00 (47 N, 122 E),
+     flat default ground at sea level. JSBSim ships no ground initial
+     conditions for global5000 (only "airborne"); passed with
+     gx_fdm_load_script_ic / the JSBSim initfile option. -->
+<initialize name="ic_runway_global5000">
+  <ubody unit="FT/SEC">   0.0 </ubody>
+  <vbody unit="FT/SEC">   0.0 </vbody>
+  <wbody unit="FT/SEC">   0.0 </wbody>
+  <latitude unit="DEG">  47.0 </latitude>
+  <longitude unit="DEG"> 122.0 </longitude>
+  <phi unit="DEG">         0.0 </phi>
+  <theta unit="DEG">       0.0 </theta>
+  <psi unit="DEG">        90.0 </psi>
+  <altitude unit="FT">     9.5 </altitude>
+  <running> -1 </running>
+</initialize>

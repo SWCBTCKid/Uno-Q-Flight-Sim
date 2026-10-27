@@ -1,0 +1,36 @@
+# Build products
+/build/
+/out/
+/dist/
+
+# Tool and editor state
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# Runtime captures and local measurements
+/captures/
+/artifacts/local/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+artifacts/hardware/*
+!artifacts/hardware/.gitkeep
+
+# Python bytecode
+__pycache__/
+
+# M1-001: fetched by tools/fetch_m1_fdm_deps.py (pinned sha256), never vendored
+/third_party/
+# Cargo output for host-side builds of the M1 workspace
+/rust/target/
+
+# Public alpha: acquired inputs, generated runtime packs and local settings
+/asset-cache/
+/config/local.psd1
+/.env
+*.log

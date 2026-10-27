@@ -1,0 +1,24 @@
+{
+  "pipeline": [
+    {
+      "type": "readers.ept",
+      "filename": "https://noaa-nos-coastal-lidar-pds.s3.amazonaws.com/entwine/geoid18/14673/ept.json",
+      "bounds": {
+        "minx": -122.405,
+        "miny": 37.598,
+        "maxx": -122.34,
+        "maxy": 37.636,
+        "crs": "EPSG:4326"
+      },
+      "resolution": 1.0
+    },
+    {
+      "type": "filters.range",
+      "limits": "Classification[2:2],Classification[6:6],Classification[17:17]"
+    },
+    {
+      "type": "writers.copc",
+      "filename": "build/spike-002-lidar/ksfo-2025-ground-buildings.copc.laz"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+[package]
+name = "gx-fdm"
+description = "Safe wrapper over the gx_fdm C shim (JSBSim)"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+gx-fdm-sys = { path = "../gx-fdm-sys" }

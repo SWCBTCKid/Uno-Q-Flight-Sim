@@ -1,0 +1,9 @@
+[package]
+name = "gx-geo"
+description = "Single WGS84 geodetic/ECEF/local-ENU conversion shared by simulation and world assets"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]

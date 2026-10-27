@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- M1-001 F-01 probe (d), the documented throwing path: the first event sets
+     a property that does not exist, so FGScript::RunScript throws a
+     JSBSim::LogException (a std::runtime_error) inside libJSBSim.so on the
+     first gx_fdm_step. The shim must return -1 with the exception text and
+     the process must continue. Loaded with ic_runway_c172p.xml. -->
+<runscript name="gx M1-001 exception in step">
+  <use aircraft="c172p" initialize="gx_m1_ic_override_required"/>
+  <run start="0.0" end="1.0" dt="0.0083333333333333333">
+    <event name="set an undefined property">
+      <condition>simulation/sim-time-sec ge 0.0</condition>
+      <set name="gx/m1/no-such-property" value="1.0"/>
+    </event>
+  </run>
+</runscript>

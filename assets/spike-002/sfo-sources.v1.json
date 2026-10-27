@@ -1,0 +1,227 @@
+{
+  "schema": "gx-spike002-source-manifest/1",
+  "area": {
+    "name": "KSFO photoreal spike",
+    "bbox_wgs84": [-122.52, 37.56, -122.30, 37.72],
+    "airport_bbox_wgs84": [-122.405, 37.598, -122.340, 37.636],
+    "airport_detail_bbox_wgs84": [-122.413, 37.591, -122.332, 37.643],
+    "runtime_origin_wgs84": [-122.3754167, 37.6188056, 4.0],
+    "working_crs": "EPSG:32610",
+    "runtime_frame": "+X east, +Y north, +Z up, metres from runtime_origin_wgs84"
+  },
+  "limits": {
+    "request_timeout_seconds": 120,
+    "max_response_bytes": 268435456,
+    "max_total_bytes": 1073741824
+  },
+  "external_inputs": [
+    {
+      "id": "flightgear_ccx_global5000",
+      "role": "Global 5000 exterior mesh and base texture candidate",
+      "authority": "FlightGear project, repackaged by Debian",
+      "package": "flightgear-data-ai_2024.1.5+dfsg-1_all.deb",
+      "package_url": "https://packages.debian.org/sid/all/flightgear-data-ai/download",
+      "package_sha256": "3fbbe86a1e7e9f41a16119e92c74ebea2e6e48d92181e032658abd59b163e2e4",
+      "license": "GPL-2+; internal evaluation is allowed, but any distributed derivative/runtime asset must satisfy the GPL and ship the corresponding source and notices.",
+      "files": [
+        {
+          "path_in_package": "usr/share/games/flightgear/AI/Aircraft/CCX/Models/bomb-5000.ac",
+          "bytes": 524489,
+          "sha256": "18a1d153afbef18ed31784ed2b171e035c2b5f3943d76395580a27bf6ae92d8e"
+        },
+        {
+          "path_in_package": "usr/share/games/flightgear/AI/Aircraft/CCX/Textures/default/bomb-5000-tex.png",
+          "bytes": 313278,
+          "sha256": "713f7f9d62a9f781e01b994cfe345bfed64e4f5e701a20284ad61f33ae0637cc"
+        },
+        {
+          "path_in_package": "usr/share/doc/flightgear-data-ai/copyright",
+          "sha256": "f19a856967964fd003e4048471a18fe1ac94f1eb392d65d84a71326efafb0e22"
+        }
+      ],
+      "repository_policy": "Do not vendor the package, mesh or texture in Git; verify them from an external cache before conversion."
+    }
+  ],
+  "sources": [
+    {
+      "id": "usgs_3dep_dem",
+      "role": "bare-earth terrain elevation",
+      "authority": "U.S. Geological Survey, 3D Elevation Program",
+      "service": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+      "metadata": "https://www.usgs.gov/faqs/what-types-elevation-datasets-are-available-what-formats-do-they-come-and-where-can-i-download",
+      "license": "U.S. Government work; public domain. Preserve USGS source citation and product metadata.",
+      "acquisition": {
+        "kind": "arcgis_export_grid",
+        "bbox": "bbox_wgs84",
+        "grid": [2, 2],
+        "pixel_size": [2048, 1536],
+        "extension": "tif",
+        "parameters": {
+          "format": "tiff",
+          "pixelType": "F32",
+          "noData": "-9999",
+          "interpolation": "RSP_BilinearInterpolation"
+        }
+      }
+    },
+    {
+      "id": "usda_naip_2024",
+      "role": "natural-colour aerial imagery",
+      "authority": "U.S. Department of Agriculture, Farm Production and Conservation",
+      "service": "https://apps.geo.fpac.usda.gov/geo-imagery/rest/services/naip/conus_naip/ImageServer",
+      "metadata": "https://apps.geo.fpac.usda.gov/geo-imagery/rest/services/naip/conus_naip/ImageServer",
+      "license": "NAIP is public domain; credit U.S. Department of Agriculture, Farm Service Agency.",
+      "selection": "year_ts = 2024 (the service catalog returned 2024 coverage at KSFO when this manifest was authored)",
+      "acquisition": {
+        "kind": "arcgis_export_grid",
+        "bbox": "bbox_wgs84",
+        "grid": [4, 4],
+        "pixel_size": [4096, 3072],
+        "extension": "tif",
+        "parameters": {
+          "format": "tiff",
+          "pixelType": "U8",
+          "bandIds": "0,1,2",
+          "interpolation": "RSP_BilinearInterpolation",
+          "mosaicRule": "{\"mosaicMethod\":\"esriMosaicAttribute\",\"where\":\"year_ts = 2024\",\"sortField\":\"year_ts\",\"sortValue\":\"2024\",\"ascending\":false,\"mosaicOperation\":\"MT_FIRST\"}"
+        }
+      }
+    },
+    {
+      "id": "usda_naip_2024_airport_detail",
+      "role": "native-resolution natural-colour aerial imagery for the airport detail layer",
+      "authority": "U.S. Department of Agriculture, Farm Production and Conservation",
+      "service": "https://apps.geo.fpac.usda.gov/geo-imagery/rest/services/naip/conus_naip/ImageServer",
+      "metadata": "https://apps.geo.fpac.usda.gov/geo-imagery/rest/services/naip/conus_naip/ImageServer",
+      "license": "NAIP is public domain; credit U.S. Department of Agriculture, Farm Service Agency.",
+      "selection": "year_ts = 2024; catalog tile names at KSFO carry resolution code 060 (0.60 metre)",
+      "acquisition": {
+        "kind": "arcgis_export_grid",
+        "bbox": "airport_detail_bbox_wgs84",
+        "grid": [3, 3],
+        "pixel_size": [4096, 3328],
+        "extension": "tif",
+        "parameters": {
+          "format": "tiff",
+          "pixelType": "U8",
+          "bandIds": "0,1,2",
+          "adjustAspectRatio": "false",
+          "interpolation": "RSP_BilinearInterpolation",
+          "mosaicRule": "{\"mosaicMethod\":\"esriMosaicAttribute\",\"where\":\"year_ts = 2024\",\"sortField\":\"year_ts\",\"sortValue\":\"2024\",\"ascending\":false,\"mosaicOperation\":\"MT_FIRST\"}"
+        }
+      }
+    },
+    {
+      "id": "osm_ksfo_aeroways",
+      "role": "runway, taxiway, apron, parking, threshold and holding geometry/tags",
+      "authority": "OpenStreetMap contributors",
+      "service": "https://api.openstreetmap.org/api/0.6/map",
+      "metadata": "https://wiki.openstreetmap.org/wiki/API_v0.6#Retrieving_map_data_by_bounding_box:_GET_/api/0.6/map",
+      "license": "Open Database License 1.0 (ODbL); include OpenStreetMap attribution and comply with ODbL for a distributed derived database.",
+      "license_url": "https://www.openstreetmap.org/copyright",
+      "acquisition": {
+        "kind": "osm_api_grid",
+        "bbox": "airport_bbox_wgs84",
+        "grid": [4, 4],
+        "extension": "osm",
+        "offline_filter": "Retain aeroway=runway|taxiway|apron|parking_position|holding_position|runway_threshold; merge/deduplicate node, way and relation IDs before clipping."
+      }
+    },
+    {
+      "id": "faa_ksfo_runways",
+      "role": "authoritative airport-diagram runway polygons and identifiers",
+      "authority": "Federal Aviation Administration, Aeronautical Information Services",
+      "service": "https://services6.arcgis.com/ssFJjBXIUyZDrSYZ/arcgis/rest/services/AM_Runway/FeatureServer/0",
+      "metadata": "https://faa.maps.arcgis.com/home/item.html?id=bc80e5ca97804c2fbc0c10482377adf5",
+      "license": "U.S. Government data provided for public use and reference/sample purposes; retain FAA attribution and data disclaimer. Not for navigation.",
+      "selection": "FAA_ID=SFO / ICAO_ID=KSFO; FAA Airport Diagram Open Data, refreshed on the chart-production cycle",
+      "acquisition": {
+        "kind": "arcgis_feature_query",
+        "bbox": "airport_bbox_wgs84",
+        "where": "ICAO_ID='KSFO'",
+        "out_fields": "*",
+        "out_sr": 4326,
+        "extension": "geojson"
+      }
+    },
+    {
+      "id": "faa_ksfo_taxiways",
+      "role": "authoritative airport-diagram taxiway polygons, designators and surface classes",
+      "authority": "Federal Aviation Administration, Aeronautical Information Services",
+      "service": "https://services6.arcgis.com/ssFJjBXIUyZDrSYZ/arcgis/rest/services/AM_Taxiway/FeatureServer/0",
+      "metadata": "https://faa.maps.arcgis.com/home/item.html?id=d1c02f9f3f7144af8ead3aca44961c59",
+      "license": "U.S. Government data provided for public use and reference/sample purposes; retain FAA attribution and data disclaimer. Not for navigation.",
+      "selection": "FAA_ID=SFO / ICAO_ID=KSFO; FAA Airport Diagram Open Data, refreshed on the chart-production cycle",
+      "acquisition": {
+        "kind": "arcgis_feature_query",
+        "bbox": "airport_bbox_wgs84",
+        "where": "ICAO_ID='KSFO'",
+        "out_fields": "*",
+        "out_sr": 4326,
+        "extension": "geojson"
+      }
+    },
+    {
+      "id": "faa_ksfo_aprons",
+      "role": "authoritative airport-diagram apron polygons and surface classes",
+      "authority": "Federal Aviation Administration, Aeronautical Information Services",
+      "service": "https://services6.arcgis.com/ssFJjBXIUyZDrSYZ/arcgis/rest/services/AM_Apron/FeatureServer/0",
+      "metadata": "https://faa.maps.arcgis.com/home/item.html?id=e74412cf6a2345eb9974fa21b6faa225",
+      "license": "U.S. Government data provided for public use and reference/sample purposes; retain FAA attribution and data disclaimer. Not for navigation.",
+      "selection": "FAA_ID=SFO / ICAO_ID=KSFO; FAA Airport Diagram Open Data, refreshed on the chart-production cycle",
+      "acquisition": {
+        "kind": "arcgis_feature_query",
+        "bbox": "airport_bbox_wgs84",
+        "where": "ICAO_ID='KSFO'",
+        "out_fields": "*",
+        "out_sr": 4326,
+        "extension": "geojson"
+      }
+    },
+    {
+      "id": "faa_ksfo_buildings",
+      "role": "authoritative airport-diagram building footprints for 3D massing",
+      "authority": "Federal Aviation Administration, Aeronautical Information Services",
+      "service": "https://services6.arcgis.com/ssFJjBXIUyZDrSYZ/arcgis/rest/services/AM_Building/FeatureServer/0",
+      "metadata": "https://faa.maps.arcgis.com/home/item.html?id=7bca2c0cf31f43b89601433eda009312",
+      "license": "U.S. Government data provided for public use and reference/sample purposes; retain FAA attribution and data disclaimer. Not for navigation.",
+      "selection": "FAA_ID=SFO / ICAO_ID=KSFO; FAA Airport Diagram Open Data, refreshed on the chart-production cycle",
+      "acquisition": {
+        "kind": "arcgis_feature_query",
+        "bbox": "airport_bbox_wgs84",
+        "where": "ICAO_ID='KSFO'",
+        "out_fields": "*",
+        "out_sr": 4326,
+        "extension": "geojson"
+      }
+    },
+    {
+      "id": "noaa_cusp_shoreline",
+      "role": "contemporary high-resolution shoreline",
+      "authority": "NOAA National Geodetic Survey",
+      "service": "https://nsde.ngs.noaa.gov/cusp/tiles/{z}/{x}/{y}.pbf",
+      "metadata": "https://www.fisheries.noaa.gov/inport/item/60812",
+      "license": "No access constraints. NOAA requests credit; dataset is not for litigation and carries no warranty.",
+      "acquisition": {
+        "kind": "web_mercator_tiles",
+        "bbox": "bbox_wgs84",
+        "zoom": 15,
+        "extension": "pbf"
+      }
+    },
+    {
+      "id": "noaa_2025_sfbay_lidar_catalog",
+      "role": "catalog and schema for the bounded KSFO building-height and terrain point-cloud derivation",
+      "authority": "NOAA Office for Coastal Management; San Francisco Estuary Institute and project partners",
+      "service": "https://noaa-nos-coastal-lidar-pds.s3.amazonaws.com/entwine/geoid18/14673/ept.json",
+      "metadata": "https://www.fisheries.noaa.gov/inport/item/80225",
+      "license": "CC0 1.0 with no access constraints. Credit NOAA and named source partners; do not imply NOAA endorsement or represent modified output as unaltered NOAA data.",
+      "selection": "Digital Coast DAV 14673 / InPort 80225; 2025 San Francisco Bay-Delta lidar, EPSG:6339 horizontal and EPSG:5703 vertical. Point extraction is defined by assets/spike-002/ksfo-lidar-pdal.v1.json.",
+      "acquisition": {
+        "kind": "static_file",
+        "bbox": "airport_bbox_wgs84",
+        "filename": "ept.json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# M1-001 (ARCH-002): pinned Rust toolchain for the M1+ application.
+# Cross-builds go through cargo-zigbuild (tools/build_m1_fdm.ps1) with the
+# pinned Zig 0.17.0 as linker, target aarch64-unknown-linux-gnu.2.34.
+[toolchain]
+channel = "1.90.0"
+profile = "minimal"
+targets = ["aarch64-unknown-linux-gnu"]

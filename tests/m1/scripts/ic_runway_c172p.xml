@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- M1-001: c172p on the runway threshold, heading 090, engine running.
+     JSBSim's own c172p/reset00 with psi 150 -> 090 and the engine running
+     (passed with gx_fdm_load_script_ic / the JSBSim initfile option). -->
+<initialize name="ic_runway_c172p">
+  <ubody unit="FT/SEC">   0.0 </ubody>
+  <vbody unit="FT/SEC">   0.0 </vbody>
+  <wbody unit="FT/SEC">   0.0 </wbody>
+  <latitude unit="DEG">  47.0 </latitude>
+  <longitude unit="DEG"> 122.0 </longitude>
+  <phi unit="DEG">         0.0 </phi>
+  <theta unit="DEG">       0.0 </theta>
+  <psi unit="DEG">        90.0 </psi>
+  <altitude unit="FT">     4.7 </altitude>
+  <running> -1 </running>
+</initialize>

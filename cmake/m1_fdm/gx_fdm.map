@@ -1,0 +1,5 @@
+/* M1-001: libgx_fdm.so exports the C API only. */
+{
+  global: gx_fdm_*;
+  local: *;
+};

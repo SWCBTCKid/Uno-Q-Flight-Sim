@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- M1-001 F-06: global5000 airborne at 5,000 ft AGL, 150 KCAS, heading 090,
+     engines running; start of the stall run (global5000_stall.xml). -->
+<initialize name="ic_air_global5000">
+  <latitude unit="DEG">  47.0 </latitude>
+  <longitude unit="DEG"> 122.0 </longitude>
+  <phi unit="DEG">         0.0 </phi>
+  <theta unit="DEG">       2.0 </theta>
+  <psi unit="DEG">        90.0 </psi>
+  <altitude unit="FT">  5000.0 </altitude>
+  <vc unit="KTS">        150.0 </vc>
+  <running> -1 </running>
+</initialize>

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!-- M1-001 standalone-executable output directive (the JSBSim logdirectivefile option).
+     Every step: the run passes the property option
+     simulation/output/log_rate_hz=<rate> so JSBSim writes one row per frame
+     (FGOutputType::SetRateHz rounds 1/(dt*rate) to 1). The rate attribute
+     below (1 Hz) is only the fallback when that option is missing. Columns: the contract output set
+     (interface item 4) in the harness's order, then the segment marker and
+     the F-06 extras. The analyzer reduces this file to the committed
+     ground-segment and 30 Hz rows. -->
+<output name="m1_full.csv" type="CSV" rate="1">
+  <property> simulation/sim-time-sec </property>
+  <property> simulation/dt </property>
+  <property> simulation/cycle_duration </property>
+  <property> position/lat-geod-deg </property>
+  <property> position/long-gc-deg </property>
+  <property> position/h-agl-ft </property>
+  <property> velocities/u-fps </property>
+  <property> velocities/v-fps </property>
+  <property> velocities/w-fps </property>
+  <property> velocities/p-rad_sec </property>
+  <property> velocities/q-rad_sec </property>
+  <property> velocities/r-rad_sec </property>
+  <property> attitude/phi-rad </property>
+  <property> attitude/theta-rad </property>
+  <property> attitude/psi-rad </property>
+  <property> velocities/vc-kts </property>
+  <property> velocities/h-dot-fps </property>
+  <property> gear/unit[0]/compression-ft </property>
+  <property> gear/unit[1]/compression-ft </property>
+  <property> gear/unit[2]/compression-ft </property>
+  <property> gear/unit[0]/WOW </property>
+  <property> gear/unit[1]/WOW </property>
+  <property> gear/unit[2]/WOW </property>
+  <property> gx/seg </property>
+  <property> gx/x-m </property>
+  <property> gx/y-m </property>
+  <property> velocities/vg-fps </property>
+  <property> aero/alpha-deg </property>
+  <property> aero/qbar-psf </property>
+  <property> inertia/weight-lbs </property>
+  <property> inertia/cg-x-in </property>
+  <property> inertia/cg-y-in </property>
+  <property> inertia/cg-z-in </property>
+  <!-- Despite its legacy name, JSBSim FGAerodynamics computes this property
+       as lift/(qbar*wingarea), i.e. signed CL (v1.3.2 lines 141-149). -->
+  <property> aero/cl-squared </property>
+  <property> accelerations/Nz </property>
+  <property> fcs/flap-pos-deg </property>
+  <property> gear/gear-pos-norm </property>
+  <property> fcs/throttle-cmd-norm[0] </property>
+  <property> fcs/elevator-cmd-norm </property>
+  <property> fcs/aileron-cmd-norm </property>
+  <property> fcs/rudder-cmd-norm </property>
+  <property> fcs/steer-cmd-norm </property>
+  <property> gx/theta-cmd </property>
+  <property> gx/hdot-cmd </property>
+</output>

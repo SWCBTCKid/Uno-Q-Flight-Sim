@@ -1,0 +1,12 @@
+# M1-001 build glue (Platform). Crate sources belong to Flight Dynamics.
+
+[env]
+# Where gx-fdm-sys's build script finds libgx_fdm.so to link against: the
+# output of tools/build_m1_fdm.ps1 (cmake/m1_fdm). An explicit GX_FDM_LIB_DIR
+# in the environment wins (`force` is off).
+GX_FDM_LIB_DIR = { value = "../build/m1-fdm/cxx/out", relative = true }
+
+[target.aarch64-unknown-linux-gnu]
+# The deployed layout is one directory: the binary, libgx_fdm.so and
+# libJSBSim.so.1 side by side, each with RUNPATH $ORIGIN. No LD_LIBRARY_PATH.
+rustflags = ["-C", "link-arg=-Wl,-rpath,$ORIGIN"]

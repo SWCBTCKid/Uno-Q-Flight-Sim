@@ -1,0 +1,9 @@
+[package]
+name = "gx-fdm-sys"
+description = "Raw FFI declarations for the gx_fdm C shim over JSBSim (src/fdm/shim/gx_fdm.h)"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+publish.workspace = true
+links = "gx_fdm"
+build = "build.rs"
